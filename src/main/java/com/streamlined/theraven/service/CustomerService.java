@@ -7,5 +7,7 @@ import com.streamlined.theraven.dto.CustomerDto;
 public interface CustomerService {
 
 	Stream<CustomerDto> getAllCustomers();
+	
+	CustomerDto save(CustomerDto customer);
 
 }

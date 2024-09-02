@@ -4,7 +4,7 @@ import java.util.Objects;
 import lombok.Builder;
 
 @Builder
-public record CustomerDto(Long id, String fullName, String email, String phone, boolean isActive) {
+public record CustomerDto(Long id, String fullName, String email, String phone) {
 
 	@Override
 	public boolean equals(Object obj) {
