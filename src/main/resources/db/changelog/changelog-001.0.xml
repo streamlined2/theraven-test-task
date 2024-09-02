@@ -28,7 +28,7 @@
 			</column>
 			<column name="phone" type="varchar(14)">
 				<constraints nullable="true" unique="true"
-					checkConstraint="length(phone)>=6 and regexp_like(email,'^\+[0-9]+$')" />
+					checkConstraint="length(phone)>=6 and regexp_like(phone,'^\+[0-9]+$')" />
 			</column>
 			<column name="is_active" type="boolean"
 				defaultValueBoolean="true">
