@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+						http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+	<changeSet author="streamlined"
+		id="001.2 fill up customer table">
+		<insert tableName="customer">
+			<column name="full_name" value="John Smith" />
+			<column name="email" value="john.smith@gmail.com" />
+			<column name="phone" value="+11234567" />
+		</insert>
+		<insert tableName="customer">
+			<column name="full_name" value="Jack Goldsmith" />
+			<column name="email" value="jack.goldsmith@gmail.com" />
+			<column name="phone" value="+18901234" />
+		</insert>
+		<insert tableName="customer">
+			<column name="full_name" value="Ruth Sparrow" />
+			<column name="email" value="ruth.sparrow@gmail.com" />
+		</insert>
+		<insert tableName="customer">
+			<column name="full_name" value="Robert De Niro" />
+			<column name="email" value="robert.de.niro@gmail.com" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

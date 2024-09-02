@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+						http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+	<changeSet author="streamlined"
+		id="001. create customer table and related indices">
+		<createTable tableName="customer">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"
+					unique="true" />
+			</column>
+			<column name="created" type="timestamp">
+				<constraints nullable="false" unique="false" />
+			</column>
+			<column name="updated" type="timestamp">
+				<constraints nullable="false" unique="false" />
+			</column>
+			<column name="full_name" type="varchar(50)">
+				<constraints nullable="false" unique="false"
+					checkConstraint="length(full_name)>=2" />
+			</column>
+			<column name="email" type="varchar(100)">
+				<constraints nullable="false" unique="true"
+					checkConstraint="length(email)>=2 and regexp_like(email,'^(.+)@(.+)$')" />
+			</column>
+			<column name="phone" type="varchar(14)">
+				<constraints nullable="true" unique="true"
+					checkConstraint="length(phone)>=6 and regexp_like(email,'^\+[0-9]+$')" />
+			</column>
+			<column name="is_active" type="boolean"
+				defaultValueBoolean="true">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<createIndex tableName="customer"
+			indexName="customer_full_name">
+			<column name="full_name" />
+		</createIndex>
+		<createIndex tableName="customer"
+			indexName="customer_email">
+			<column name="email" />
+		</createIndex>
+		<createIndex tableName="customer"
+			indexName="customer_phone">
+			<column name="phone" />
+		</createIndex>
+	</changeSet>
+</databaseChangeLog>

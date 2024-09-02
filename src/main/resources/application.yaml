@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: theRavenTestTask
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:15432/theraven
+    username: postgres
+    password: secret
+  liquibase:
+    driver-class-name: org.postgresql.Driver
+    change-log: classpath:db/changelog.xml
+  jpa:
+    show-sql: true
+    hibernate:
+      format_sql: true
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+      include-stacktrace: never
+      include-message: never
+
+debug: true
+logging:
+  level:
+    '[com.streamlined.theraven.TheRavenTestTaskApplication]': TRACE

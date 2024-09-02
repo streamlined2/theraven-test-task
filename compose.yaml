@@ -3,9 +3,9 @@ services:
     image: 'bitnami/postgresql:16.4.0'
     environment:
       - 'POSTGRESQL_DATABASE=theraven'
-      - 'POSTGRESQL_PASSWORD=secret'
-      - 'POSTGRESQL_USERNAME=user'
       - 'POSTGRESQL_POSTGRES_PASSWORD=secret'
+      - 'POSTGRESQL_USERNAME=user'
+      - 'POSTGRESQL_PASSWORD=secret'
     ports:
       - '15432:5432'
     volumes:
