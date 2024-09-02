@@ -1,6 +1,5 @@
 package com.streamlined.theraven.controller;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,7 @@ import com.streamlined.theraven.service.CustomerService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequiredArgsConstructor
@@ -39,6 +39,13 @@ public class CustomerController {
 		CustomerDto savedCustomerDto = customerService.save(dto);
 		return ResponseEntity.created(Utilities.getResourceURI(servletRequest, savedCustomerDto.id()))
 				.body(savedCustomerDto);
+	}
+
+	@PutMapping("/{customerId}")
+	public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long customerId,
+			@RequestBody CustomerDto customerDto) {
+		CustomerDto updatedCustomerDto = customerService.save(customerId, customerDto);
+		return ResponseEntity.ok(updatedCustomerDto);
 	}
 
 }

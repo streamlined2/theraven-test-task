@@ -10,6 +10,7 @@ import com.streamlined.theraven.dao.CustomerRepository;
 import com.streamlined.theraven.data.Customer;
 import com.streamlined.theraven.dto.CustomerDto;
 import com.streamlined.theraven.dto.mapper.CustomerMapper;
+import com.streamlined.theraven.exception.EntityNotFoundException;
 
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,18 @@ public class DefaultCustomerService implements CustomerService {
 	@Transactional
 	public CustomerDto save(CustomerDto dto) {
 		Customer entity = customerMapper.toEntity(dto);
+		Utilities.checkIfValid(validator, entity, "customer");
+		return customerMapper.toDto(customerRepository.save(entity));
+	}
+
+	@Override
+	@Transactional
+	public CustomerDto save(Long id, CustomerDto dto) {
+		Customer entity = customerRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Customer not found for id %d".formatted(id)));
+		entity.setFullName(dto.fullName());
+		entity.setEmail(dto.email());
+		entity.setPhone(dto.phone());
 		Utilities.checkIfValid(validator, entity, "customer");
 		return customerMapper.toDto(customerRepository.save(entity));
 	}

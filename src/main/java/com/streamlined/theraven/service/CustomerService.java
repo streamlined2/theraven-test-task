@@ -8,9 +8,11 @@ import com.streamlined.theraven.dto.CustomerDto;
 public interface CustomerService {
 
 	Stream<CustomerDto> getAllCustomers();
-	
+
 	Optional<CustomerDto> getCustomerById(Long id);
-	
+
 	CustomerDto save(CustomerDto customer);
+
+	CustomerDto save(Long id, CustomerDto customer);
 
 }
