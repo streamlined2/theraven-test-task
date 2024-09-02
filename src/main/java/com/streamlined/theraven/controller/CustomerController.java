@@ -3,6 +3,7 @@ package com.streamlined.theraven.controller;
 import java.util.stream.Stream;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,12 @@ public class CustomerController {
 			@RequestBody CustomerDto customerDto) {
 		CustomerDto updatedCustomerDto = customerService.save(customerId, customerDto);
 		return ResponseEntity.ok(updatedCustomerDto);
+	}
+
+	@DeleteMapping("/{customerId}")
+	public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
+		customerService.removeCustomerById(customerId);
+		return ResponseEntity.noContent().build();
 	}
 
 }

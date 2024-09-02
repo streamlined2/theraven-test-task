@@ -53,4 +53,13 @@ public class DefaultCustomerService implements CustomerService {
 		return customerMapper.toDto(customerRepository.save(entity));
 	}
 
+	@Override
+	@Transactional
+	public void removeCustomerById(Long id) {
+		Customer entity = customerRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Customer not found for id %d".formatted(id)));
+		entity.setActive(false);
+		customerRepository.save(entity);
+	}
+
 }
