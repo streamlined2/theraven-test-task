@@ -1,9 +1,11 @@
 package com.streamlined.theraven.controller;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,11 @@ public class CustomerController {
 	@GetMapping
 	public Stream<CustomerDto> getAllCustomers() {
 		return customerService.getAllCustomers();
+	}
+
+	@GetMapping("/{customerId}")
+	public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long customerId) {
+		return ResponseEntity.of(customerService.getCustomerById(customerId));
 	}
 
 	@PostMapping

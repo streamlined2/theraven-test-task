@@ -1,5 +1,6 @@
 package com.streamlined.theraven.service;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,11 @@ public class DefaultCustomerService implements CustomerService {
 	@Override
 	public Stream<CustomerDto> getAllCustomers() {
 		return Utilities.stream(customerRepository.findAll()).map(customerMapper::toDto);
+	}
+
+	@Override
+	public Optional<CustomerDto> getCustomerById(Long id) {
+		return customerRepository.findById(id).map(customerMapper::toDto);
 	}
 
 	@Override
