@@ -48,7 +48,6 @@ public class DefaultCustomerService implements CustomerService {
 		Customer entity = customerRepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("Customer not found for id %d".formatted(id)));
 		entity.setFullName(dto.fullName());
-		entity.setEmail(dto.email());
 		entity.setPhone(dto.phone());
 		Utilities.checkIfValid(validator, entity, "customer");
 		return customerMapper.toDto(customerRepository.save(entity));
